@@ -750,7 +750,7 @@ function quitGameWarning(){
 
 
 function displayQR(){
-    generateQRCode("http://localhost:3000/?room="+thisRoom)
+    generateQRCode("https://tuptromps.onrender.com/?room="+thisRoom)
     alertSpace.style.display = "flex"
     canvasContainer.style.display = "block"
 }
