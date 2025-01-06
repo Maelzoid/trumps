@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tup Tromps - a tribute to Top Trumps card game by Justin Maelzer, showcasing html, css, javascript, ui, ux, node.js, socket.io">
+    <title>Tup Tromps</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="trumpStyles.css">
+</head>
+<body class="oldskool-skin default-theme">
+
+    <div id="alertSpace">
+        <button class="killButton" onclick="killAlert()"></button>
+        <div id="alertContent"></div>
+        <div id="canvasContainer"></div>
+    </div>
+    
+    <div id="landing">
+        <div id="coverImage">
+        <div id="landingButtons">
+            <button class="landingButton" onclick="goToStartGame()"><img src="images/assets/startGameButton.png" alt="start game button"></button>
+            <button class="landingButton" onclick="goToJoinGame()"><img  src="images/assets/joinGameButton.png" alt="join game button"></button>
+        </div>
+    </div>
+        <div class="top-trumps-rules">
+            <p>Welcome to <strong>Tup Tromps</strong>, my tribute to the classic card game Top Trumps. This browser-based game has been developed to showcase my design and coding capabilities. I hope you enjoy playing it.</p>
+            <hr>
+            <h5>How to Play</h5>
+          
+            <h6>Setup</h6>
+            <ol>
+              <li>Two to eight players can take part.</li>
+              <li>One player elects to host the game. They click START GAME and choose which deck to play with.</li>
+              <li>The host shares the game code numebr with the other players, who each click JOIN GAME to sign up to the game.</li>
+              <li>When the host decides to click GO! or eight players have joined teh game, play commences. </li>
+              <li>Approximately 32 cards (depending on the number of players) are dealt out.</li>
+              <li>A player is picked by random to play first</li>
+            </ol>
+          
+            <h6>Gameplay</h6>
+            <ol>
+              <li><strong>Choosing a Category:</strong> The lead player looks at the top card of their stack and chooses one category (e.g., Height, Speed, Year Built) to play.</li>
+              <li><strong>Comparing Stats:</strong> All players reveal the top card of their stack. Compare the chosen category’s value on each card.
+                <ul>
+                  <li>Usually, the player with the highest value in the chosen category wins the round. In some cases (eg. 0-60 in seconds) the player with the lowest value wins. If one of the categories is a date, the oldest number will win.</li>
+                  <li>In case of a tie, a showdown occurs. All the cards are placed in the middle, and each of the tied players   turns their next card, comparing the same category as before. This process is repetaed until a winner is determined.</li>
+                  <li>If a player is in a showdown and gets to their last card, they can keep playing it until a winner is found.</li>
+                </ul>
+              </li>
+            </ol>
+          
+            <h6>Winning a Round</h6>
+            <ol>
+              <li>The round’s winner collects all the top cards from all players, including those placed in the middle during showdowns.</li>
+              <li>The winner places the cards they won at the bottom of their stack without shuffling.</li>
+              <li>The winner becomes the new lead player and chooses the next category.</li>
+            </ol>
+          
+            <h6>Elimination</h6>
+            <p>If a player runs out of cards, they are eliminated from the game.</p>
+          
+            <h6>Winning the Game</h6>
+            <p>The game continues until one player collects all the cards. That player is declared the winner!</p>
+          </div>
+          
+
+    </div>
+    <div id="container">
+    <div id="startGame">
+        <img src="images/assets/mainLogo.svg" class="logoOnPage" alt="Tup Tromps logo">
+        <h5>Host your own game</h5>
+        <h6>Name:</h6>
+        <input type="text" id="hostName">
+        <h6>Choose a deck</h6>
+        
+        <div class="carousel-container">
+            <button class="carouselButton" id="carouselLeft" onclick="carouselPress(-1)"><img src="images/assets/buttonLeft.svg" alt="left button" ></button>
+            <div id="carouselWindow">
+                <div id="chosenDeck"><img src="images/80sCars/cover.png" alt="deck choice"></div>
+            </div>
+            <button class="carouselButton" id="carouselRight" onclick="carouselPress(1)"><img src="images/assets/buttonRight.svg" alt="right button"></button>
+        </div>
+          
+        <h6>Choose your skin</h6>
+
+        <div class="chooseSkins" data-skin-group="1">
+            <button class="skin-button selected" data-skin="oldskool" onclick="switchSkin('oldskool')">
+                <img src="images/assets/oldskoolbutton.png" alt="oldskool">
+            </button>
+            <button class="skin-button" data-skin="minimal" onclick="switchSkin('minimal')">
+                <img src="images/assets/minimalbutton.png" alt="minimal">
+            </button>
+            <button class="skin-button" data-skin="neon" onclick="switchSkin('neon')">
+                <img src="images/assets/neonbutton.png" alt="neon">
+            </button>
+        </div>
+        
+        <button class="goButton" onclick="initGame()"><img src="images/assets/goButton.png" alt="go button"></button>
+
+    </div>
+
+    <div id="joinGame">
+        <img src="images/assets/mainLogo.svg" class="logoOnPage" alt="Tup Tromps logo">
+        <h5>Join a game of trumps</h5>
+        <h6>Name:</h6>
+        <input type="text" id="newPlayerName">
+        <h6>Game code:</h6>
+        <input type="text" id="gameId">
+        <h6>Choose your skin</h6>
+        <div class="chooseSkins" data-skin-group="2">
+            <button class="skin-button selected" data-skin="oldskool" onclick="switchSkin('oldskool')">
+                <img src="images/assets/oldskoolbutton.png" alt="oldskool">
+            </button>
+            <button class="skin-button" data-skin="minimal" onclick="switchSkin('minimal')">
+                <img src="images/assets/minimalbutton.png" alt="minimal">
+            </button>
+            <button class="skin-button" data-skin="neon" onclick="switchSkin('neon')">
+                <img src="images/assets/neonbutton.png" alt="neon">
+            </button>
+        </div>
+        <button class="goButton" onclick="joinNewGame()"><img src="images/assets/goButton.png" alt="go button"></button>
+
+    </div>
+
+
+
+
+
+    <div id="lobby">
+        <img src="images/assets/mainLogo.svg" class="logoOnPage" alt="Tup Tromps logo">
+        <div id="shareCode">
+        <h6>Share code with players</h6>
+        <div id="roomCodeToDisplay"></div>
+        <button id="qrCodeButton" onclick="displayQR()"></button>
+        </div>
+        <h6 id="playerListDetail">1 player ready to play</h6>
+        <div id="playerListDiv">
+            
+            <!-- Player names will be displayed here -->
+        </div>
+        <div id="guestInstruction">
+        <h6>Waiting for other players to join. The host will start play when ready.</h6>
+        <div id="lobbyDeck" style="height:300px; padding-top:20px"><img id="lobbyDeckImg" src="images/80sCars/cover.png" alt="deck choice"></div>
+            </div>
+        
+        <button class="goButton" onclick="gameOn()" id="dealCardsButton"><img src="images/assets/goButton.png" alt="go button"></button>
+        
+    </div>
+
+
+
+    <div id="gamePage">
+        <div id = "topBarAndMenu">
+            <div id="topBar">
+            <div id="infoDisplay"></div>
+            <button id="inGameMenuButton" onclick="toggleMenu()"></button></div>
+            <div id="menuScreen">
+                <p>Change your skin:</p>
+                <div class="chooseSkins" data-skin-group="3">
+                    <button class="skin-button selected" data-skin="oldskool" onclick="switchSkin('oldskool')">
+                        <img src="images/assets/oldskoolbutton.png" alt="oldskool">
+                    </button>
+                    <button class="skin-button" data-skin="minimal" onclick="switchSkin('minimal')">
+                        <img src="images/assets/minimalbutton.png" alt="minimal">
+                    </button>
+                    <button class="skin-button" data-skin="neon" onclick="switchSkin('neon')">
+                        <img src="images/assets/neonbutton.png" alt="neon">
+                    </button>
+                </div>
+                <p>Quit the game:</p>
+                <button class="goButton" onclick="quitGameWarning()"><img src="images/assets/quitButton.png" alt="quit button"></button>
+            </div>
+        </div>
+
+        <div id="cardSpace">
+
+            <div id="endScreen"><img id="endScreenImg" src="/images/assets/Loser.png" alt=""><button id="returnToStart" class="goButton" onclick="backToStart()"><img src="images/assets/playAgainButton.png" alt="play again button"></button></div>
+            
+            <div id="cardContainer" class="cardShape">
+                <div id="playButtonDiv"></div>
+                <div id="cardInPlayDiv" class="cardInPlayClass">
+                    <div id="cardFront" class="cardFront">
+                        <div class="cardTopLine">
+                            <div id="cardNumber" class="cardNumber"></div>
+                            <div class="flagDiv"><img src="" alt="flag" class="cardFlag" id="cardFlag"></div>
+                        </div>
+                        <div class="cardImage"><img id="cardImagePath" src="" alt="" ></div>
+                        <div id="cardName" class="cardName"></div>
+                        <div class="cardStats">
+                            <button onclick="selectPlayChoice(3)" class="statButtonClass" id="statButton1"></button>
+                            <button onclick="selectPlayChoice(4)" class="statButtonClass" id="statButton2"></button>
+                            <button onclick="selectPlayChoice(5)" class="statButtonClass" id="statButton3"></button>
+                            <button onclick="selectPlayChoice(6)" class="statButtonClass" id="statButton4"></button>
+                            <button onclick="selectPlayChoice(7)" class="statButtonClass" id="statButton5"></button>
+                        </div>
+                    </div>
+                
+                    <div id= "cardBack" class="cardBackClass backOfCard"></div>
+                </div>
+            </div>
+            <div id="playersDeck" class="cardShape backOfCard"></div>
+            <div id="dealingCards"></div>
+        </div>
+        <div id="myCards"></div>
+        
+    </div>
+    </div>
+
+    <footer id="footer">
+        <p>Tup Tromps was designed and developed by Justin Maelzer</p>
+        <a href="https://www.maelzer.design" target="_blank">maelzer.design</a>
+    </footer>
+
+
+</body>
+</html>

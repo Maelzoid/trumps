@@ -1,0 +1,55 @@
+80s Road Cars
+max,max,min,max,max
+number,name,country,Top Speed (mph),Cylinders,0-60 (sec),Power (bhp),Doors
+A1,Aston Martin V8 Vantage,UK,170,8,5.2,390,2
+A2,Lotus Esprit,UK,138,4,6.6,210,2
+A3,Jaguar XJS,UK,143,12,7.5,295,2
+A4,MG MGB GT,UK,105,4,11,95,2
+B1,Ford Fiesta XR2,UK,105,4,9.3,84,3
+B2,Ford Cortina,UK,95,4,12.5,70,4
+B3,Ford Capri Ghia,UK,115,6,9.8,138,2
+B4,Ford Sierra XR4i,UK,130,6,8,148,3
+C1,Austin Allegro,UK,90,4,17,50,4
+C2,Austin Maxi,UK,97,4,13.8,75,5
+C3,Austin Princess,UK,102,6,12.8,110,4
+C4,Austin Metro,UK,90,4,16,63,3
+D1,Rolls-Royce Silver Spirit,UK,118,8,10.8,220,4
+D2,Bentley Mulsanne Turbo,UK,135,8,7,300,4
+D3,TVR 280i,UK,130,6,7.8,160,2
+D4,Rover Vitesse,UK,125,6,7.9,190,4
+E1,Mini Clubman,UK,85,4,19.5,40,2
+E2,Hillman Avenger,UK,92,4,14.5,70,4
+E3,Vauxhall Cavalier,UK,112,4,12,115,4
+E4,Reliant Robin,UK,85,4,16,39,2
+F1,Triumph Dolomite,UK,100,4,10.2,91,4
+F2,Triumph Stag,UK,115,8,10.5,145,2
+F3,Talbot Sunbeam Lotus,UK,124,4,8.4,150,3
+F4,Talbot Horizon,France,95,4,13.5,65,4
+G1,Citroën 2CV,France,65,2,29,29,4
+G2,Citroën Visa,France,95,4,13.5,60,5
+G3,Citroën CX,France,120,4,11,125,4
+G4,Peugeot 205 GTI,France,118,4,8.7,105,3
+H1,Renault 5,France,92,4,11.6,95,3
+H2,Renault 21,France,118,4,10,110,5
+H3,Volvo 240 Estate,Sweden,105,4,12,112,5
+H4,Saab 900 Turbo,Sweden,143,4,8,145,3
+I1,Volkswagen Beetle,Germany,80,4,18,50,2
+I2,Volkswagen Golf GTI,Germany,113,4,9.2,110,5
+I3,Volkswagen Passat,Germany,110,4,12.5,90,5
+I4,Audi Quattro,Germany,137,5,6.3,200,3
+J1,BMW 635 CSi,Germany,140,6,7.4,215,2
+J2,Mercedes-Benz SL,Germany,127,8,7.5,240,2
+J3,Porsche 911,Germany,152,6,6.1,204,2
+J4,DMC DeLorean,USA,130,6,9.5,130,2
+K1,Fiat Panda,Italy,90,4,16,45,3
+K2,Lancia Delta,Italy,130,4,8,130,5
+K3,Skoda 120L,Czechoslovakia,87,4,15,62,4
+K4,Lada Riva,USSR,87,4,13,67,4
+L1,Lamborghini Countach,Italy,185,12,5.4,375,2
+L2,Ferrari Testarossa,Italy,180,12,5.2,390,2
+L3,Maserati Biturbo,Italy,140,6,6.5,202,2
+L4,Alfa Romeo Alfasud,Italy,110,4,10.7,79,4
+M1,Nissan Micra,Japan,81,4,13.5,55,5
+M2,Honda Civic,Japan,100,4,11.5,68,5
+M3,Datsun Cherry,Japan,90,4,16,55,3
+M4,Mitsubishi Galant,Japan,110,4,10,95,4

@@ -1,0 +1,1061 @@
+#startGame, #joinGame, #dealCardsButton, #lobby, #gamePage, #playersDeck, #cardContainer, #dealingCards,  #endScreen, #shareCode, #guestInstruction, #alertSpace {
+    display: none;
+}
+
+
+#startGame, #joinGame, #lobby {
+    background: linear-gradient(180deg, rgba(5,115,143,1) 0%, rgba(0,189,198,1) 63%, rgba(5,115,143,1) 100%);
+    flex-direction: column;
+    align-items: center; /* Centers everything horizontally */
+    justify-content: center;
+    text-align: center; /* Ensures text aligns properly */
+    min-height: 100vh;
+}
+
+
+:root{
+    /* default values - most updated by js */
+
+    --bgColour: #5289ff;
+    --textColour: #f8f8f8;
+    --deckSize: 1;
+    --cardsInHand: 1;
+    --card-height: 400px;
+    }
+
+body.oldskool-skin {
+    --background-path: url(images/assets/oldskool/background.jpg) ;
+    --playbutton-path: url(images/assets/oldskool/play.png);
+    --menubutton-path: url(images/assets/oldskool/menubutton.jpg);
+    --menubg-path: url(images/assets/oldskool/menubackground.jpg);
+    --card-front-image: url(/images/cardbg.jpg);
+    --info-background: linear-gradient(0deg, rgba(201,201,201,1) 0%, rgba(255,255,255,1) 36%, rgba(222,222,222,1) 100%);
+    --info-colour: #505050;
+    --catBoxBackground: none;
+}    
+
+body.neon-skin {
+    --background-path: url(images/assets/neon/background.jpg) ;
+    --playbutton-path: url(images/assets/neon/play.png);
+    --menubutton-path: url(images/assets/neon/menubutton.jpg);
+    --menubg-path: url(images/assets/neon/menubackground.jpg);
+    --info-background: linear-gradient(0deg, rgba(42,42,42,1) 0%, rgba(63,63,63,1) 68%, rgba(43,43,43,1) 100%);
+    --back-image-path: url(/images/assets/neon/cardBack.jpg);
+    --card-front-image: url(/images/assets/neon/cardFront.jpg);
+    --topline-padding: 0;
+    --topline-background: transparent;
+    --image-border: 1px solid #ee2a7b; 
+    --name-bg-colour: transparent;
+    --catBoxBackground: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(20,20,20,0) 68%, rgba(20,20,20,1) 100%);
+    --catBoxColour: rgb(40,40,40)  ;
+    --catBoxHiliteColour: rgb(140, 100, 100) ;
+    --button-border:1px solid #ee2a7b;
+    --flag-border: none;
+    --flag-frame: none;
+    --image-border-style: solid;
+    --mix-blend-mode: normal;
+    --info-colour:#ee2a7b;
+    --topline-text-colour:#ee2a7b;
+    --card-name-colour:#ee2a7b;
+    --category-text-colour:#ee2a7b;
+    --mix-blend-mode: normal;
+
+}  
+
+body.minimal-skin {
+    --background-path: url(images/assets/minimal/background.jpg) ;
+    --playbutton-path: url(images/assets/minimal/play.png);
+    --menubutton-path: url(images/assets/minimal/menubutton.jpg);
+    --menubg-path: url(images/assets/minimal/menubackground.jpg);
+    --info-background: #e0e0e0;
+    --back-image-path: url(/images/assets/minimal/cardBack.jpg);
+    --card-front-image: url(/images/assets/minimal/cardFront.jpg);
+    --topline-padding: 0;
+    --topline-background: transparent;
+    --image-border: 1px solid #ffffff; 
+    --name-bg-colour: transparent;
+    --catBoxBackground: none;
+    --catBoxColour: rgba(154, 204, 237,0)  ;
+    --catBoxHiliteColour: rgba(154, 204, 237,1) ;
+    --button-border:1px solid #424685;
+    --flag-border: none;
+    --flag-frame: none;
+    --image-border-style: solid;
+    --mix-blend-mode: normal;
+    --info-colour:#424685;
+    --topline-text-colour:#424685;
+    --card-name-colour:#424685;
+    --category-text-colour:#424685;
+    --mix-blend-mode: normal;
+}  
+
+
+
+
+
+body.default-theme{
+    --topline-padding: 0;
+    --back-image-path: url(/images/80sCars/back.jpg);
+    --card-front-image: url(/images/cardbg.jpg);
+    --topline-background: transparent;
+    --image-border: 1px solid #000000; 
+    --name-bg-colour: transparent;
+    --catBoxColour: #ffffff;
+    --catBoxHiliteColour: #acfbad;
+    --button-border:1px solid #444444;
+    --flag-border: none;
+    --flag-frame: none;
+    --image-border-style: solid;
+    --mix-blend-mode: multiply;
+    --topline-text-colour: #1e3d67;
+    --card-name-colour:#1e3d67;
+    --category-text-colour: #202020;
+}
+
+body.classic-theme{
+    --topline-padding: 0.015;
+    --back-image-path: url(/images/Aeroplanes/back.jpg);
+    --card-front-image: url(/images/cardbg.jpg);
+    --topline-background: #ffdf00;
+    --image-border: 4px solid #ffffff; 
+    --name-bg-colour: #ffdf00;
+    --catBoxColour: #ffdf00;
+    --catBoxHiliteColour: #ff8000;
+    --button-border:2px solid #ffffff;
+    --flag-border: 1px solid #ffffff;
+    --flag-frame: ellipse();
+    --image-border-style: solid none;
+    --mix-blend-mode: multiply;
+    --topline-text-colour: #1e3d67;
+    --card-name-colour:#1e3d67;
+    --category-text-colour: #202020;
+}
+
+
+
+body {    
+    overflow: visible; /* Allow animations and 3D transforms */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: var(--textColour);
+    font-family: "Helvetica", "arial", sans-serif;
+    font-size: 14px; 
+    font-weight: 300; 
+    text-align: center;
+    line-height: 180%;
+    display: flex;
+    flex-direction: column; /* Ensure content centers vertically */
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+hr{
+    border:0;
+    height:1px;
+    background-color:#d0d0d0;
+    margin:2rem;
+}
+
+h6{
+    text-align: center;
+    font-size: 16px;
+    font-weight:bold;
+    margin: 0;
+
+}
+
+h5{
+    text-align: center;
+    font-size: 24px;
+    font-weight:300;
+    margin: 10px;
+}
+
+/* General list styles */
+ol, ul {
+    margin: 1rem 0; /* Adjust top and bottom margin */
+    padding-left: 2rem; /* Indent the list items */
+    list-style-position: outside; /* Bullets/numbers align with text */
+  }
+  
+  /* Ordered list (numbers) */
+  ol {
+    list-style-type: decimal; /* Default to numbers */
+  }
+  
+  /* Unordered list (bullets) */
+  ul {
+    list-style-type: square; /* Default to solid circle bullets */
+  }
+
+  
+  /* Adjust spacing for nested lists */
+  ol li, ul li {
+    margin-bottom: 0.5rem; /* Add spacing between items */
+  }
+  
+  ol ol, ul ul {
+    margin-top: 0.5rem; /* Add margin for nested lists */
+    margin-bottom: 0.5rem;
+    padding-left: 2rem; /* Indent nested lists further */
+  }
+
+  ul li::before {
+    content: '•'; /* Inserts a bullet before the <li> content */
+    font-size: 1.2rem; /* Adjusts the size of the bullet */
+    position: absolute; /* Allows precise placement */
+    left: -1.5rem; /* Positions the bullet to "hang" outside the margin */
+    top: 0;
+  }
+  
+
+#footer {
+    color:#444444;
+    width:100%;
+    display:block;
+    font-weight: 400;
+    padding: 10px 0px 10px 0px;
+    background: linear-gradient(180deg, rgba(147,147,147,1) 0%, rgba(200,200,200,1) 100%);
+    box-shadow: 0px -2px 4px rgba(0,0,0,0.2);
+}  
+
+#footer p {
+    margin: 5px 0;
+    padding: 0; 
+}
+
+a {
+    color:#444444;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#containerBG {
+    height: 100vh; /* Full viewport height */
+    background-image: url(/images/assets/trump_wallpaper.png);
+    background-repeat: repeat;
+}
+
+
+.tabbed-line {
+    margin:0;
+}
+
+#container {
+    background-color: var(--bgColour);
+    max-width: 800px;
+    width:100%;
+    height:100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+#landing{
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(5,115,143,1) 0%, rgba(0,189,198,1) 63%, rgba(5,115,143,1) 100%);
+    padding-top: 0;
+    width: 100vw;
+}
+
+#coverImage{
+    height: 100vh; /* Full height of the viewport */
+    background-image: url('images/assets/landingScreen.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Make sure the image covers the container */
+    background-position: center top; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    margin-bottom: 40px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#landingButtons {
+    position: absolute;
+    top: 60%; /* Position buttons vertically at the center */
+    left: 50%; /* Position buttons horizontally at the center */
+    transform: translate(-50%, -50%); /* Offset by 50% of their own size to truly center */
+    display: flex;
+    flex-direction: row;
+    gap: 0; /* Optional: Adds spacing between the buttons */
+}
+
+.landingButton {
+    border: none;
+    background: none;
+    height: 25vh;
+    width: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landingButton img {
+    object-fit: contain;
+    height: 100%; /* Ensure the image fills the button */
+    width: 100%; /* Ensure the image fills the button */
+}
+
+
+.top-trumps-rules{
+    margin: 0 auto;
+    text-align: left;
+    width: 90vw;
+    max-width: 600px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.logoOnPage{
+    max-width:80%;
+    padding-top:2rem;
+    padding-bottom: 2rem;
+}
+
+#hostName, #newPlayerName, #gameId, #roomCodeToDisplay, #playerListDiv {
+    width: 80%;
+    border-radius: 20px;
+    border-color: #404040;
+    border-width: 3px;
+    text-align: center;
+    border: solid;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#hostName, #newPlayerName, #gameId {
+    height: 40px;
+    font-size: 24px;
+    }
+
+#roomCodeToDisplay {
+    text-align: center;
+    margin-left:10%;
+    color: #404040;
+    font-size: 96px;
+    font-weight: 700;
+    padding:50px 0;
+    background-color: #f0f0f0;
+    
+    }
+
+#playerListDiv{
+    text-align: center;
+    margin-left:10%;
+    color: #404040;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 20px;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    }    
+
+.carousel-container{
+    display: flex;
+    align-items: center; /* Vertically aligns the buttons and the carousel window */
+    justify-content: center; /* Centers the carousel within the container */
+    gap: 1rem; /* Adds space between the buttons and the carousel window */
+    width: 90%; /* Ensures the container spans full width */
+    padding: 10px 5% 20px 5%;
+    height: 220px;
+}
+
+.carouselButton{
+    width: 20%;
+    background: none;
+    border: none;
+}
+
+.carouselButton img {
+    width: 40%;
+    height:auto;
+}
+
+#carouselWindow{
+    width: 60%;
+    height: 100%; /* Match the height of the carousel-container */
+    overflow: hidden; /* Ensures any overflowing content is hidden */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chosenDeck, #lobbyDeck{
+    width: 100%; /* Make the chosenDeck fill the window */
+    height: 96%; /* Ensure it also matches the height of the carousel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#chosenDeck img, #lobbyDeck img {
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+    max-height:100%;
+    object-fit: contain;
+    max-width: 100%;
+}
+
+/* Hide the actual radio buttons */
+input[type="radio"] {
+    display: none;
+}
+
+.chooseSkins {
+    padding: 10px 5% 20px 5%;
+    display: flex;
+    align-items: center; /* Vertically aligns the buttons and the carousel window */
+    justify-content: center; /* Centers the carousel within the container */
+    gap:10px;
+}
+
+.skin-button {
+    border: none;
+    background: none;
+    max-height: 150px;
+    max-width: 150px;
+    padding: 0;
+    position: relative; /* Enable positioning for the pseudo-element */
+}
+
+.skin-button img {
+    border-radius: 10px; /* Ensure the corners match the border */
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+.skin-button.selected::before {
+    content: ''; /* Pseudo-element for the border */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid #ee2a7b; /* Border style */
+    border-radius: 10px; /* Match the rounded corners */
+    pointer-events: none; /* Allow clicks to pass through */
+    box-sizing: border-box; /* Ensure the border fits inside */
+}
+
+
+.goButton{
+    background:none;
+    border:none;
+    height:120px;
+    width:120px;
+    align-self:center;
+}
+
+.goButton img{
+    height:100%;
+}
+
+#qrCodeButton {
+    height:80px;
+    width:80px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid #404040;
+    padding:10px;
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:80%;
+    background-image: url(images/assets/QRbutton.svg);
+    margin-bottom: 20px;
+}
+
+
+
+
+#gamePage{
+    height: 100vh;
+    flex-direction: column;
+    background-image: var(--background-path);
+    background-size: cover;
+}
+
+#topBarAndMenu {
+    display:flex;
+    flex-direction: column;
+}
+
+#topBar {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 20;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+    background-image: var(--menubg-path);
+    background-size: auto 100%; /* Maintain aspect ratio and set height to 100% */
+    background-position: right center; /* Anchor to the far right */
+    background-repeat: no-repeat; /* Prevent tiling */
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+#infoDisplay{
+    height:70%;
+    width: 87%;
+    margin:1.5%;
+    align-content: center;
+    left:0;
+    color: var(--info-colour);
+    background: var(--info-background);
+    border-radius: 50px;
+    border: 1px solid #444444;
+    box-shadow: inset 10px 5px 5px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;        /* Prevents text wrapping to the next line */
+    overflow: hidden;          /* Hides any text that overflows the container */
+    text-overflow:ellipsis;   /* Adds "..." at the end of overflowing text */
+    width: 100%; 
+    font-size: 18px;
+
+
+}
+
+#inGameMenuButton{
+    border:0;
+    height:100%;
+    right:0;
+    aspect-ratio: 1;
+    background-image: var(--menubutton-path);
+    background-size: cover;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+
+
+#menuScreen {
+    display: flex;
+    flex-direction: column;
+    z-index: 19;
+    position: absolute;
+    margin-top: 10vh;
+    width: 100%;
+    height: 90vh;
+    background: #ffffff;
+    color: var(--textColour);
+    transform: translateY(-100%); /* Start off-screen above */
+    transition: transform 0.15s ease-out; /* Smooth sliding effect */
+}
+
+#menuScreen.show {
+    transform: translateY(0); /* Slide into position */
+}
+
+
+
+
+
+#cardSpace {
+    z-index:1;
+    perspective: 1000px;
+    display: flex;
+    height: 80vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Parent context for absolute elements */
+}
+
+.cardShape {
+    aspect-ratio: 0.62; /* Consistent card ratio */
+    height: 90%; /* Consistent height */
+    max-width: 90%; /* Ensure responsive sizing */
+
+}
+
+#cardContainer {
+    
+    transform-style: preserve-3d;
+    z-index: 5;
+    position: relative; /* Relative positioning for 3D perspective */
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    /* box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.25);*/
+}
+
+@keyframes flyIn {
+    0% {transform:translate(20vw, -100vh)}
+    100% {transform:translateY(0)}
+}
+
+.flyIn {
+    animation: flyIn 150ms ease-in forwards;
+    animation-iteration-count: 12;
+}
+
+@keyframes flyOff {
+    100% {transform:translate(20vw, -100vh)}
+    0% {transform:translate(0vh, 0vh)}
+}
+
+.flyOff {
+    animation: flyOff 300ms ease-in forwards;
+    animation-iteration-count: 1;
+
+}
+
+@keyframes reDeck {
+    0% {
+        transform: translateX(0) rotateY(0deg);
+        z-index: 5;
+    }
+    25% {transform: translateX(-30vh) rotateY(0deg);
+        z-index:5;}
+    
+    50% {
+        transform:  translateX(-60vh)rotateY(-90deg);
+        z-index: 1;
+    }
+    75% {transform: translateX(-30vh) rotateY(-180deg);}
+    100% {
+        transform:  translateX(0) rotateY(-180deg);
+        z-index: 1;
+    }
+
+
+}
+
+.reDeck {
+    animation: reDeck 500ms linear; /* Added linear */
+    animation-iteration-count: 1;
+}
+
+
+
+
+
+#cardContainer.flyRight {
+    transform: translateX(100vw);  /* Move to the right, off the screen */
+    transition: transform 0.5s ease-out;
+}
+
+#cardContainer.flyLeft {
+    transform: translateX(-100vw);  /* Move to the right, off the screen */
+    transition: transform 0.5s ease-out;
+
+}
+
+/* Ensure #cardInPlayDiv has a proper reference frame and visible content */
+#cardInPlayDiv {    
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Ensures 3D transform works */ 
+    border-radius: calc(var(--card-height) * 0.05);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+/* Add the flip effect when this class is added */
+#cardInPlayDiv.is-flipped {
+    transform: rotateY(-180deg); /* Flip the card */
+    transition: transform 0.25s;
+    
+}
+
+/* Front and back faces of the card */
+.cardBackClass {
+    border-radius: calc(var(--card-height) * 0.05);
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Stack front and back on top of each other */
+    backface-visibility: hidden; /* Hide the back side when not visible */
+    
+
+}
+
+/* Front face styling */
+.cardFront {
+    box-sizing: border-box;
+    mix-blend-mode: var(--mix-blend-mode);
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+    background-color: lightblue; /* Front card color */
+    transform: rotateY(180deg); /* Initially flipped */
+    padding: calc(var(--card-height) * 0.05);
+    background-color: #ffffff;
+    height: calc(var(--card-height));
+    background-image: var(--card-front-image);
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    border-radius: calc(var(--card-height) * 0.05);
+    width: fit-content;
+    position: absolute; /* Stack front and back on top of each other */
+    backface-visibility: hidden; /* Hide the back side when not visible */
+
+}
+
+/* Back face styling */
+#cardBack {
+    /*background-image: url(images/80sCars/back.jpg);*/
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    pointer-events: auto;     
+}
+
+
+.cardTopLine {
+    box-sizing: border-box;
+    background-color: var(--topline-background);
+    mix-blend-mode: var(--mix-blend-mode);
+    height: calc((var(--card-height) * 0.105417));
+    width: 100%;
+    padding-left: calc(var(--card-height) * var(--topline-padding)) ;
+    padding-right: calc(var(--card-height) * var(--topline-padding)) ;
+    padding-top: calc(var(--card-height) * var(--topline-padding)) ;
+    padding-bottom: calc(var(--card-height) * 0.025417);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: flex-end;
+	align-content: space-between;
+    font-size: xx-large;
+    font-weight: 800;
+    color: var(--topline-text-colour);
+}
+
+.cardNumber {
+    height:100%; 
+    font-size: calc((var(--card-height) * 0.08));
+}
+
+.flagDiv {
+    background-color: #ffffff;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+}
+
+.flagDiv img{
+    display: block; /* Remove inline spacing if any */
+    height: 100%; /* Ensure the image fills the container */
+}
+
+
+
+
+.cardFlag {
+    height:100%;
+}
+
+.cardImage {
+    height: calc(var(--card-height) * 0.384583);
+    width: 100%;
+    border: var(--image-border) ;
+    box-sizing: border-box;
+    border-style: var(--image-border-style);
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.cardName {
+    color: var(--card-name-colour);
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 600;
+    padding: 0;
+    height: calc(var(--card-height) * 0.1);
+    display: flex; /* Enables Flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+}
+
+.statButtonClass {
+    color:var(--category-text-colour);
+    mix-blend-mode: var(--mix-blend-mode);
+    width: 100%;
+    height: 20%;
+    padding: 10 0 10 0;
+    margin:0;
+    border: 0;
+    font-size: 16px;
+    background: var(--catBoxBackground), var(--catBoxColour);
+    border-top: var(--button-border);
+    box-sizing: border-box;
+
+
+}
+
+.cardStats {
+    height:calc(var(--card-height) * 0.31);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: var(--button-border);
+    box-sizing: border-box;
+}
+
+@keyframes flashBackground {
+    0% {
+        background-color: var(--catBoxColour);
+    }
+    50% {
+        background-color: var(--catBoxHiliteColour);
+    }
+    100% {
+        background-color: var(--catBoxColour);
+    }
+}
+.flashing {
+    animation: flashBackground 0.5s infinite;
+}
+
+
+
+#playButtonDiv {
+    opacity: 0; /* Fully transparent */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: absolute; /* Position it absolutely within the parent container */
+    width: 80%; /* Set the width to 80% of the parent container */
+    height: 20%; /* Maintain the proportions of the content */
+    top: 25%; /* Offset 10% from the top of the parent */
+    left: 50%; /* Center horizontally */
+    z-index: 10;
+    transform: translateX(-50%); /* Center it precisely by offsetting its own width */
+    }
+    
+    #playButtonDiv.show {
+        opacity: 1; /* Fully visible */
+        visibility: visible; /* Make it visible */
+    }
+
+
+#playButton {
+    all: unset; /* Reset all default styles of the button */
+    display: block; /* Ensure it's treated as a block-level element */
+    width: 100%; /* Fill the parent div */
+    height: 100%; /* Maintain the aspect ratio */
+    background-image: var(--playbutton-path);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+    pointer-events: auto; /* Allow the button itself to be clickable */
+}
+
+.backOfCard {
+    background-image: var(--back-image-path);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#playersDeck {
+    position: absolute; /* Overlay behind `#cardContainer` */
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    z-index: 2; /* Positioned underneath `#cardContainer` */
+    max-width: 90%; /* Match the width of `.cardShape` */
+    height: 90%; /* Match the height of `.cardShape` */
+    border-radius: calc(var(--card-height) * 0.05); /* Match border radius */
+    box-shadow: calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) rgba(0, 0, 0, 0.35);
+
+}
+
+#dealingCards {
+    height: 100%; /* Full height of the container */
+    position: absolute; /* Overlay */
+    top: 0;
+    left: 0;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    display: flex; /* Flexbox container */
+    z-index: 3;
+    width: 100%; /* Full width of the container */
+}
+
+#dealingCards.winning {
+    z-index: 1;
+}
+
+
+
+/* Slide down animation */
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -160%); /* Start out of view above */
+    }
+    to {
+        transform: translate(calc(-50% + var(--x-offset)), -50%); /* Final position after drop */
+    }
+}
+
+/* Slide down animation */
+@keyframes winCards {
+    from {
+        transform: translate(-25%, -160%); /* Start out of view above */
+    }
+    to {
+        transform: translate(-50% , -50%); /* Final position after drop */
+    }
+}
+
+
+/* Converge animation */
+@keyframes converge {
+    from {
+        transform: translate(calc(-50% + var(--x-offset)), -50%);
+        box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.25); /* Start at final position from slideDown */
+    }
+    to {
+        transform: translate(-50%, -50%);
+        box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.05); /* Move to the exact center */
+    }
+}
+
+.dealingCard {
+    position: absolute;
+    height: 90%;
+    aspect-ratio: 0.62;
+    max-width: 90%;
+    border-radius: calc(var(--card-height) * 0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% + var(--x-offset)), -160%); /* Initial position above */
+    /*background-image: url(images/Aeroplanes/back.jpg);*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    animation-fill-mode: forwards; /* Keeps final position after each animation */
+}
+
+.dealingCard.winning {
+    transform: translate(-25%, -160%); 
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+#myCards{
+    height:10vh;
+    width: 98%;
+    position: relative;
+    overflow: hidden; /* Hide excess cards */
+    z-index: 0;
+}
+
+.miniCard{
+    height: 90%;
+    aspect-ratio: 0.62;
+    background-color: #5289ff;
+    border: #f8f8f8 2px;
+    background-image: var(--back-image-path);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);    
+    border-radius: 5px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.tabbed-line {
+    text-align: left;
+    position: relative;
+  }
+
+.tab {
+    position: absolute;
+    right: 0;
+    }
+
+#endScreen{
+    flex-direction: column;
+    top:0;
+    height: calc(var(--card-height) * 0.8);
+    z-index: 7;
+    position:absolute;
+    object-fit: contain;
+
+}
+
+#endScreenImg{
+    height: calc(var(--card-height) * 0.5);
+    padding-top: calc(var(--card-height) * 0.25);
+}
+
+
+#alertSpace {
+    flex-direction: column;
+    position: fixed;
+    align-content: center;
+    justify-content: center;
+    top: 5vh;
+    background-color: #f0f0f0;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+    z-index: 69;
+    width: 90vw;
+    height: 90vh;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px solid #404040;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#canvasContainer{
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+    aspect-ratio: 1;
+}
+
+#canvasContainer canvas {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Avoid extra space around canvas */
+    margin: auto; /* Center the canvas within alertContent */
+}
+
+.killButton {
+    position: absolute; /* Change this */
+    top: 10px; /* Align near top */
+    right: 10px; /* Align to the right */
+    height: 40px;
+    width: 40px;
+    border: none;
+    background: none;
+    background-image: url(images/assets/kill.svg);
+    cursor: pointer; /* Optional, but improves UX */
+}
+
+.alertText {
+    color:#404040;
+    font-size: 24px;
+    text-wrap:balance;
+}
+
+#menuScreen p {
+    color:#404040;
+    font-size: 24px;
+    text-wrap:balance;
+}

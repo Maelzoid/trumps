@@ -1,0 +1,43 @@
+Aeroplanes
+max,max,max,max,max
+Number,Plane,Country,Top Speed (km/h),Number of Passengers,Length (m),Range (km),Fuel Efficiency (ft/lb)
+A1,Boeing 737 MAX,USA,823,230,40,6570,239
+A2,Boeing 737-800,USA,842,189,40,5500,258
+A3,Boeing 747-8,USA,988,410,76,15000,199
+A4,Boeing 757-200,USA,850,239,47,7250,239
+B1,Boeing 767-300ER,USA,905,269,55,11000,258
+B2,Boeing 777-200LR,USA,905,317,64,15843,239
+B3,Boeing 787 Dreamliner,USA,913,242,57,14800,239
+B4,Boeing 787-9,USA,913,296,64,14800,239
+C1,Airbus A220-300,FranceGermany,839,160,42,6300,318
+C2,Airbus A320neo,FranceGermany,870,240,38,6300,278
+C3,Airbus A321XLR,FranceGermany,830,244,45,8700,278
+C4,Airbus A330-800neo,FranceGermany,910,260,64,13330,239
+D1,Airbus A350 XWB,FranceGermany,913,315,67,15000,258
+D2,Airbus A380,FranceGermany,1020,555,73,15200,219
+D3,Embraer E195-E2,Brazil,890,132,42,2600,338
+D4,Embraer Phenom 300E,Brazil,839,9,13,3650,239
+E1,Beechcraft King Air 350i,USA,578,9,14,3260,278
+E2,Cessna Citation Longitude,USA,1000,12,21,5278,159
+E3,Cirrus Vision Jet SF50,USA,556,5,11,2315,378
+E4,Gulfstream G700,USA,1130,19,34,13890,219
+F1,Mooney M20V Acclaim Ultra,USA,325,4,9,1710,437
+F2,Piper M600,USA,610,6,10,2408,318
+F3,Bombardier Global 7500,Canada,1015,19,35,14260,219
+F4,Daher TBM 940,France,635,6,12,3260,318
+G1,Dassault Falcon 8X,France,1000,16,24,11945,199
+G2,HondaJet Elite,Japan,778,6,13,2625,358
+G3,Pilatus PC-12 NGX,Switzerland,528,9,14,3650,338
+G4,Saab JAS 39 Gripen,Sweden,2200,2,14,3200,60
+H1,Lockheed C-130 Hercules,USA,640,92,30,3800,139
+H2,Lockheed Martin F-22 Raptor,USA,2410,1,19,2500,40
+H3,Lockheed Martin F-35 Lightning II,USA,1930,2,16,2220,80
+H4,Lockheed P-3 Orion,USA,800,11,35,4400,119
+I1,McDonnell Douglas F-15E Strike Eagle,USA,2670,2,19,2400,60
+I2,Northrop Grumman B-2 Spirit,USA,1019,2,21,11000,80
+I3,Dassault Rafale,France,1910,2,15,3700,60
+I4,Sukhoi Su-57,Russia,2600,2,22,3500,40
+J1,Boeing B-52 Stratofortress,USA,1050,6,50,14000,99
+J2,Boeing F/A-18 Super Hornet,USA,1915,2,18,2250,60
+J3,Boeing KC-46 Pegasus,USA,915,3,50,6400,119
+J4,Eurofighter Typhoon,Europe,2495,2,16,3790,60
