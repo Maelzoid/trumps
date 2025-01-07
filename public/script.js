@@ -302,6 +302,7 @@ function loseGame() {
     cardContainer.offsetHeight; // Force reflow (to reset styles)
     
     // Start the animation
+    endScreenImg.src ="images/assets/loser.png"
     endScreen.style.display = "flex";
     cardContainer.classList.add('flyOff');
     console.log('lose Game');
@@ -579,9 +580,14 @@ function updateCard() {
     cardFlag.src = "images/flags/" + cardDeets[2] + ".svg";
     
     for (let i = 0; i < 5; i++) {
-        let formattedNumber = Number(cardDeets[i + 3]).toLocaleString(); // Format the number
-        statButtons[i].innerHTML = `<p class="tabbed-line">${categories[i + 3]}: <span class="tab">${formattedNumber}</span></p>`;
+        // Check if the category includes 'year' or 'Year'
+        let category = categories[i + 3];
+        let value = Number(cardDeets[i + 3]);
+        let formattedNumber = category.toLowerCase().includes('year') ? value : value.toLocaleString();
+    
+        statButtons[i].innerHTML = `<p class="tabbed-line">${category}: <span class="tab">${formattedNumber}</span></p>`;
     }
+    
 
     console.log("updateCard: ",cardDeets);
 }

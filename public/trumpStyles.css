@@ -28,7 +28,6 @@ body.oldskool-skin {
     --playbutton-path: url(images/assets/oldskool/play.png);
     --menubutton-path: url(images/assets/oldskool/menubutton.jpg);
     --menubg-path: url(images/assets/oldskool/menubackground.jpg);
-    --card-front-image: url(/images/cardbg.jpg);
     --info-background: linear-gradient(0deg, rgba(201,201,201,1) 0%, rgba(255,255,255,1) 36%, rgba(222,222,222,1) 100%);
     --info-colour: #505050;
     --catBoxBackground: none;
@@ -98,7 +97,7 @@ body.default-theme{
     --back-image-path: url(/images/80sCars/back.jpg);
     --card-front-image: url(/images/cardbg.jpg);
     --topline-background: transparent;
-    --image-border: 1px solid #000000; 
+    --image-border: 1px solid #202020; 
     --name-bg-colour: transparent;
     --catBoxColour: #ffffff;
     --catBoxHiliteColour: #acfbad;
@@ -132,6 +131,25 @@ body.classic-theme{
 }
 
 
+body.nautical-theme{
+    --topline-padding: 0;
+    --back-image-path: url(/images/Ships/back.jpg);
+    --card-front-image: url(/images/Ships/front.jpg);
+    --topline-background: transparent;
+    --image-border: 1px solid #2a5370; 
+    --name-bg-colour: #9cd2ff;
+    --catBoxColour: #e7d9b9;
+    --catBoxHiliteColour: #00d0ff;
+    --button-border:2px solid #2a5370;
+    --flag-border: 1px solid #2a5370;
+    --flag-frame: none;
+    --image-border-style: solid;
+    --mix-blend-mode: normal;
+    --topline-text-colour: #2a5370;
+    --card-name-colour:#2a5370;
+    --category-text-colour: #2a5370;
+}
+
 
 body {    
     overflow: visible; /* Allow animations and 3D transforms */
@@ -142,12 +160,16 @@ body {
     color: var(--textColour);
     font-family: "Helvetica", "arial", sans-serif;
     font-size: 14px; 
-    font-weight: 300; 
+    font-weight: 400; 
     text-align: center;
     line-height: 180%;
     display: flex;
     flex-direction: column; /* Ensure content centers vertically */
     transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    background-image: url('images/assets/landingScreen.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Make sure the image covers the container */
+    background-position: center bottom; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
 }
 
 hr{
@@ -298,10 +320,12 @@ a {
 .top-trumps-rules{
     margin: 0 auto;
     text-align: left;
-    width: 90vw;
+    width: 100%;
     max-width: 600px;
     padding-left: 40px;
     padding-right: 40px;
+    box-sizing: border-box;
+
 }
 
 .logoOnPage{
@@ -539,8 +563,9 @@ input[type="radio"] {
     position: absolute;
     margin-top: 10vh;
     width: 100%;
+    max-width: 800px;
     height: 90vh;
-    background: #ffffff;
+    background: #f0f0f0;
     color: var(--textColour);
     transform: translateY(-100%); /* Start off-screen above */
     transition: transform 0.15s ease-out; /* Smooth sliding effect */
@@ -690,7 +715,7 @@ input[type="radio"] {
     background-image: var(--card-front-image);
     background-repeat: no-repeat;
     background-attachment: fixed; 
-    background-size: 100% 100%;
+    background-size: cover;
     border-radius: calc(var(--card-height) * 0.05);
     width: fit-content;
     position: absolute; /* Stack front and back on top of each other */
@@ -701,7 +726,7 @@ input[type="radio"] {
 /* Back face styling */
 #cardBack {
     /*background-image: url(images/80sCars/back.jpg);*/
-    background-size: contain;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
