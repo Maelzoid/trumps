@@ -357,14 +357,8 @@ function findWinners(toCompare, comparisons) {
 }
 
 
-
-
-
-async function playRound(code, catNo) {
+function endTimeout(code){
     const room = rooms[code];
-    toCompare = []
-    room.freezeQuit = true
-
     if (room.timeout) {
         clearTimeout(room.timeout);
         room.timeout = null;
@@ -374,6 +368,15 @@ async function playRound(code, catNo) {
         clearTimeout(room.reminderTimeout);
         room.reminderTimeout = null;
     }
+}
+
+
+async function playRound(code, catNo) {
+    const room = rooms[code];
+    toCompare = []
+    room.freezeQuit = true
+
+    endTimeout(code)
 
 
     for (let i = 0; i < room.dealtCards.length; i += 1) {
@@ -505,6 +508,7 @@ async function playRound(code, catNo) {
 function checkForWinner(code) {
     room = rooms[code]
     if (room.dealtCards.length == 1) {
+        endTimeout(code)
         room.game = false
         winner = room.dealtCards[0][0]
         sendControl(code, winner, "winGame" )

@@ -161,7 +161,7 @@ classNames.forEach(className => {
 deckList = ['80sCars','Aeroplanes','Ships']
 thisDeckIndex = 0
 thisDeck = '80sCars'
-thisPlayer = 'Justin'
+thisPlayer = ''
 host = false
 game = false
 cardsToDeal = [1,1,16,11,8,5,5,5,4]
@@ -749,7 +749,7 @@ function backToStart() {
     playersDeck.style.display = "none" 
     cardContainer.style.display = "none" 
     dealingCards.style.display = "none"
-    switchSkin(oldskool)   
+    switchSkin('oldskool')   
     document.footer.display = "block"
 }
 
