@@ -71,6 +71,7 @@ socket.on('game-start',() => {
     lobby.style.display = "none";
     gamePage.style.display = "flex";
     footer.style.display = "none";
+    endScreen.style.display = "none";
     switchGlobalTheme()
     createMiniCards();
     dealCards()
@@ -750,7 +751,6 @@ function backToStart() {
     cardContainer.style.display = "none" 
     dealingCards.style.display = "none"
     switchSkin('oldskool')   
-    document.footer.display = "block"
 }
 
 

@@ -304,6 +304,11 @@ function sendGameState(code) {
     });
 }
 
+function dismantleRoom(io, roomCode) {
+    io.in(roomCode).socketsLeave(roomCode);
+    console.log(`Room ${roomCode} has been dismantled.`);
+}
+
 ///////////////// gameplay   //////////////
 
 
@@ -515,6 +520,7 @@ function checkForWinner(code) {
         sendMessage(code, winner, "Congratulations! You have won the game!")
         loserList = room.playerList.filter((player => player !== winner))
         sendMessage(code, loserList, winner+" has won the game!")
+        dismantleRoom(io, code) 
     }
     }
 
@@ -542,6 +548,7 @@ function removePlayer(code, removedName) {
         }}
     room.dealtCards = room.dealtCards.filter(([name, cards]) => name != removedName);
     sendMessage(code, activePlayers(code),removedName+" has left the game! All their cards into the middle!");
+    sendControl(code, removedName, 'loseGame')
     checkForWinner(code)
     if (room.game){
         if (room.currentPlayer == removedName) {
