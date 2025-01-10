@@ -114,7 +114,7 @@ body.default-theme{
 body.classic-theme{
     --topline-padding: 0.015;
     --back-image-path: url(/images/Aeroplanes/back.jpg);
-    --card-front-image: url(/images/Ships/front.jpg);
+    --card-front-image: url(/images/Aeroplanes/front.jpg);
     --topline-background: #ffdf00;
     --image-border: 4px solid #ffffff; 
     --name-bg-colour: #ffdf00;

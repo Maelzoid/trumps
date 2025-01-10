@@ -72,6 +72,7 @@ socket.on('game-start',() => {
     gamePage.style.display = "flex";
     footer.style.display = "none";
     endScreen.style.display = "none";
+    freezeScrolling()
     switchGlobalTheme()
     createMiniCards();
     dealCards()
@@ -98,7 +99,7 @@ socket.on('send-raw-deck', ( sendRawDeck ) => {
 socket.on('send-game-state', (gameState) => {
     dealtCards = gameState.dealtCards;
     currentPlayer = gameState.currentPlayer;
-    
+    clearPlayButtons()
     /* updateCard() */
 });
 
@@ -490,6 +491,10 @@ function updatePlayerListDisplay(playerList) {
 function initGame() {
     // Host initialises the game
     const playerName = hostName.value;
+    if (playerName.length < 2){
+        sendAlert('The name you have chosen is not long enough! Please choose again')
+        return
+    }
     
 
     thisPlayer = playerName
@@ -509,7 +514,11 @@ function initGame() {
 
 
 function joinNewGame() {
-    const playerName = document.getElementById('newPlayerName').value;;
+    const playerName = document.getElementById('newPlayerName').value;
+    if (playerName.length < 2){
+        sendAlert('The name you have chosen is not long enough! Please choose again')
+        return
+    }
     const roomJoinCode = document.getElementById('gameId').value;
     socket.emit('joinRoom', { roomJoinCode, playerName });
 }
@@ -574,6 +583,8 @@ function dealCards() {
         updateStack()
         startPlay(); // Call the next function
     }, totalAnimationTime * 1000); // Convert total animation time to milliseconds
+
+
 }
 
 
@@ -583,6 +594,8 @@ function dealCards() {
 
 function startPlay() {
     /* updateCard() */
+    cardContainer.classList.remove('flyOff');
+    cardInPlayDiv.classList.remove('is-flipped');
     cardContainer.style.display = "flex"
     updateCardHeight();    
 }
@@ -637,10 +650,14 @@ function clearStatButtons() {
     });
 }
 
-
-function submitPlayChoice(categoryNumber) {
+function clearPlayButtons(){
     playButtonDiv.classList.remove('show');
     clearStatButtons()
+}
+
+
+function submitPlayChoice(categoryNumber) {
+    clearPlayButtons()
     socket.emit('submit-play', { thisRoom, categoryNumber });
 }
 
@@ -649,7 +666,7 @@ function flashCategoryButton(n) {
     statButtons[n].classList.add("flashing");
     setTimeout(() => {
         statButtons[n].classList.remove("flashing");
-    }, 2500); 
+    }, 5000); 
 }
 
 
@@ -683,7 +700,7 @@ function processMessages() {
   
       const message = messageBuffer.shift(); // Get the next message
       displayMessage(message); // Function to show the message
-    }, 2000); // 2-second delay
+    }, 2500); // 3-second delay
   }
   
 // Function to handle incoming messages
@@ -745,12 +762,11 @@ function backToStart() {
     gamePage.style.display = "none"    
     landing.style.display = "block"
     menuScreen.classList.remove('show');
-    cardContainer.classList.remove('flyOff');
-    cardInPlayDiv.classList.remove('is-flipped');
     playersDeck.style.display = "none" 
     cardContainer.style.display = "none" 
     dealingCards.style.display = "none"
     switchSkin('oldskool')   
+    enableScrolling()
 }
 
 
@@ -816,6 +832,20 @@ window.addEventListener('load', async function() {
         document.getElementById('gameId').value = roomToJoin
         goToJoinGame()
     }
-
 });
 
+
+
+/////////////// scrolling functions
+
+
+function freezeScrolling() {
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100%";
+    window.scrollTo(0, 1); // Scroll 1 pixel down
+  }
+  
+  function enableScrolling() {
+    document.body.style.overflow = "";
+    document.body.style.height = "";
+  }

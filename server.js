@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const socketIo = require('socket.io');
+const roomPlayers = {}; 
 
 // Initialize Express
 const app = express();
@@ -116,6 +117,12 @@ io.on('connection', (socket) => {
             return;
         }
         
+         // Check if the socket is already in the room
+         if (room && room.has(socket.id)) {
+            socket.emit('error', { message: 'You are already in this room!' });
+            return;
+        }
+
         // Check if the game has already started
         if (room.game) {
             socket.emit('joinError', { message: 'The game has already started. You cannot join now.' });
@@ -262,7 +269,6 @@ async function prepareDeck(code) {
     }
     
     console.log(room.dealtCards)
-    sendMessage(code,room.playerList,"game on!!")
     io.in(code).emit('send-raw-deck', {rawDeck: room.rawDeck, comparisons: room.comparisons, categories: room.categories} );  // Broadcast updated playerList to all clients
     room.currentPlayer = room.playerList[getRandomInt(room.playerList.length)]
     await wait(1)
@@ -320,15 +326,20 @@ function nextHand(code) {
 
     room.reminderTimeout = setTimeout(() => {
         sendMessage(code,[room.currentPlayer],"We're waiting... Make your move, "+room.currentPlayer+"!")
-    }, 20000); // Reminder at 20 seconds
+    }, 30000); // Reminder at 30 seconds
 
     room.timeout = setTimeout(() => {
         console.log(`Player ${room.currentPlayer} timed out in room ${code}.`);
-        sendMessage(code,[room.currentPlayer],"You have been kicked out of the game!")
-        removePlayer(code, room.currentPlayer)
-    }, 30000); // 30 seconds, adjust as needed
-    
+        sendMessage(code,[room.currentPlayer],"You have taken too long to play!")
+        sendMessage(code,allBut(code,room.currentPlayer),room.currentPlayer+" forfeits their turn!")
+        timedOutPlayer = room.currentPlayer
+        while (room.currentPlayer == timedOutPlayer){
+        room.currentPlayer = room.dealtCards[getRandomInt(activePlayers(code).length)][0]}
+        nextHand(code)
+    }, 45000); // 45 seconds, adjust as needed
 }
+
+
 
 
 
@@ -404,7 +415,7 @@ async function playRound(code, catNo) {
     winners = findWinners(toCompare,room.comparisons[catNo-3])
 
     room.freezeQuit = true
-    await wait(2.5)
+    await wait(5)
 
 
     //// remove losers cards ///
