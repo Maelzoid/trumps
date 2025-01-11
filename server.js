@@ -117,8 +117,7 @@ io.on('connection', (socket) => {
             return;
         }
         
-         // Check if the socket is already in the room
-         if (room && room.has(socket.id)) {
+        if (room && typeof room.has === 'function' && room.has(socket.id)) {
             socket.emit('error', { message: 'You are already in this room!' });
             return;
         }
