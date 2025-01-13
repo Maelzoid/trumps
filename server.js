@@ -90,6 +90,7 @@ io.on('connection', (socket) => {
                 game: false, // Game is not active yet
                 rawDeck: [],
                 playerList: [playerName], // Add host to player list
+                socketList: [socket.id],
                 currentPlayer: null,
                 playerCount: 1, // Host is the first player
                 prizeCards: [],
@@ -110,18 +111,13 @@ io.on('connection', (socket) => {
     // Join Room Handler (Inside)
     socket.on('joinRoom', ({ roomJoinCode, playerName }) => {
         const room = rooms[roomJoinCode]; // Retrieve the room object
-    
+        console.log(rooms)    
         // Check if the room exists
         if (!room) {
             socket.emit('joinError', { message: 'Room does not exist' });
             return;
         }
         
-        if (room && typeof room.has === 'function' && room.has(socket.id)) {
-            socket.emit('error', { message: 'You are already in this room!' });
-            return;
-        }
-
         // Check if the game has already started
         if (room.game) {
             socket.emit('joinError', { message: 'The game has already started. You cannot join now.' });
@@ -151,6 +147,7 @@ io.on('connection', (socket) => {
     
         // Update room state
         room.playerList.push(playerName); // Add player to playerList
+        room.socketList.push(socket.id)
         room.playerCount++; // Increment player count
     
         // Notify the player they joined successfully
@@ -178,7 +175,31 @@ io.on('connection', (socket) => {
     // Disconnect Handler (Inside)
     socket.on('disconnect', () => {
         console.log(`Client disconnected: ${socket.id}`);
-        // Handle room cleanup or client removal logic here
+        // check rooms to see if client is in
+        for (const key in rooms) {
+            if (rooms[key].socketList.includes(socket.id)){
+                room = rooms[key]
+                thisIndex = room.socketList.indexOf(socket.id)
+                thisName = room.playerList[thisIndex]
+                console.log(`${socket.id} ${thisName} leaves room ${key}.`);
+                console.log(room.socketList)
+                console.log(room.playerList)
+                console.log(room.game)
+                if (!room.game) {
+                    // game not yet started
+                    room.socketList.splice(thisIndex,1)
+                    room.playerList.splice(thisIndex,1)
+                    socket.to(key).emit('playerJoined', {
+                        playerName: null,
+                        playerList: room.playerList,
+                    });
+
+                } else {
+                    // game underway
+                    playerQuits(key, thisName)
+                }
+            }
+        }
     });
 
     
@@ -319,11 +340,13 @@ function dismantleRoom(io, roomCode) {
 
 function nextHand(code) {
     const room = rooms[code];
-    sendGameState(code)
+    endTimeout(code);
+    sendGameState(code);
     sendMessage(code,[room.currentPlayer],'It\'s you to play')
     sendMessage(code,allBut(code,room.currentPlayer),room.currentPlayer+" to play")
 
     room.reminderTimeout = setTimeout(() => {
+        console.log(`Reminder sent to ${room.currentPlayer} in room ${code}.`);
         sendMessage(code,[room.currentPlayer],"We're waiting... Make your move, "+room.currentPlayer+"!")
     }, 30000); // Reminder at 30 seconds
 
@@ -374,15 +397,23 @@ function findWinners(toCompare, comparisons) {
 
 function endTimeout(code){
     const room = rooms[code];
+
+    console.log(room.timeout)
+    console.log("endTimeout: "+code)
+
+
     if (room.timeout) {
-        clearTimeout(room.timeout);
+        clearTimeout(room.timeout)
         room.timeout = null;
     }
 
     if (room.reminderTimeout) {
-        clearTimeout(room.reminderTimeout);
+        clearTimeout(room.reminderTimeout)
         room.reminderTimeout = null;
     }
+
+
+    console.log(room.timeout)
 }
 
 

@@ -204,7 +204,6 @@ cardBack.addEventListener('click', () => {
     });
 
 
-
 function toggleMenu() {
     menuScreen.classList.toggle('show');
     }
@@ -224,6 +223,12 @@ function myCardToPlay() {
 }
 
 
+
+window.addEventListener("beforeunload", (event) => {
+    event.preventDefault();
+    event.returnValue = "Are you sure you want to leave? Changes may be lost.";
+  });
+  
 
 
 
