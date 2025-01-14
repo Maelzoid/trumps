@@ -1,5 +1,5 @@
-Ships
-max,max,max,max,min
+﻿Ships,,,,,,,
+max,max,max,max,min,,,
 number,name,country,Length (m),Displacement (tons),Top Speed (knots),Complement,Year Launched
 A1,Santa Maria,Spain,23,150,8,40,1492
 A2,Mary Rose,UK,32,500,8,400,1511
@@ -13,7 +13,7 @@ C1,SS Great Britain,UK,98,3400,14,130,1843
 C2,SS Great Eastern,UK,212,32000,14,4000,1858
 C3,Mary Celeste,USA,32,282,10,10,1861
 C4,Cutty Sark,UK,65,963,17,28,1869
-D1,Gj�a,Norway,25,31,6,8,1901
+D1,Gjøa,Norway,25,31,6,8,1901
 D2,HMS Dreadnought,UK,160,18000,21,800,1906
 D3,RMS Lusitania,UK,240,31550,25,1959,1907
 D4,RMS Titanic,UK,269,52310,24,2435,1912

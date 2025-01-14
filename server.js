@@ -397,10 +397,7 @@ function findWinners(toCompare, comparisons) {
 
 function endTimeout(code){
     const room = rooms[code];
-
-    console.log(room.timeout)
     console.log("endTimeout: "+code)
-
 
     if (room.timeout) {
         clearTimeout(room.timeout)
@@ -412,8 +409,6 @@ function endTimeout(code){
         room.reminderTimeout = null;
     }
 
-
-    console.log(room.timeout)
 }
 
 
