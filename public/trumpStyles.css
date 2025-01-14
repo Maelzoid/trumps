@@ -12,6 +12,11 @@
     min-height: 100vh;
 }
 
+html, body {
+    overscroll-behavior: none;
+  }
+  
+
 
 :root{
     /* default values - most updated by js */
