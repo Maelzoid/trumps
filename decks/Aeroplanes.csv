@@ -1,6 +1,6 @@
 Aeroplanes
 max,max,max,max,max
-Number,Plane,Country,Top Speed (km/h),Number of Passengers,Length (m),Range (km),Fuel Efficiency (ft/lb)
+Number,Plane,Country,Top Speed (km/h),Seats,Length (m),Range (km),Fuel Efficiency (ft/lb)
 A1,Boeing 737 MAX,USA,823,230,40,6570,239
 A2,Boeing 737-800,USA,842,189,40,5500,258
 A3,Boeing 747-8,USA,988,410,76,15000,199

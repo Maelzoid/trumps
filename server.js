@@ -463,8 +463,8 @@ async function playRound(code, catNo) {
     while (winners.length > 1) {
 
         if (winners.length == 2) {
-        sendMessage(code, activePlayers(code),'It\'s a draw! Showdown between '+winners[0]+' and '+winners[1])}
-        else {sendMessage(code, activePlayers(code),'It\'s a draw! Showdown between '+winners.length+' players')}
+        sendMessage(code, activePlayers(code),'Showdown between '+winners[0]+' and '+winners[1])}
+        else {sendMessage(code, activePlayers(code),'Showdown between '+winners.length+' players')}
         
         // remove cards only for those who have more than one and assemble new compare list
 
@@ -490,7 +490,7 @@ async function playRound(code, catNo) {
         finalists = winners
         winners = findWinners(toCompare,room.comparisons[catNo-3])
         
-        console.log("showdown",winners,"dealtCards: ",room.dealtCards,"prize Crds: ", room.prizeCards)
+        console.log("showdown",winners,"dealtCards: ",room.dealtCards,"prize Cards: ", room.prizeCards)
 
         sendMessage(code,activePlayers(code), formatArray(toCompare))
 
@@ -521,12 +521,12 @@ async function playRound(code, catNo) {
     room.currentPlayer = winners[0]
 
     sendMessage(code,[room.currentPlayer],'You\'ve won the hand!')
-    sendMessage(code,allBut(code,room.currentPlayer),room.currentPlayer+' wins the hand!')
     sendControl(code,[room.currentPlayer],'winHand'+((room.prizeCards.length)))
 
     
     for (let i = 0; i < room.dealtCards.length; i += 1) {
         if (room.currentPlayer == room.dealtCards[i][0]) {
+            sendMessage(code,allBut(code,room.currentPlayer),room.currentPlayer+' wins with '+room.rawDeck[room.dealtCards[i][1][0]][1])
             room.prizeCards.push(room.dealtCards[i][1].shift());
             room.dealtCards[i][1] = room.dealtCards[i][1].concat(room.prizeCards)}
     }

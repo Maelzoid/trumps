@@ -26,6 +26,8 @@ html, body {
     --deckSize: 1;
     --cardsInHand: 1;
     --card-height: 400px;
+
+
     }
 
 body.oldskool-skin {
@@ -35,7 +37,7 @@ body.oldskool-skin {
     --menubg-path: url(images/assets/oldskool/menubackground.jpg);
     --info-background: linear-gradient(0deg, rgba(201,201,201,1) 0%, rgba(255,255,255,1) 36%, rgba(222,222,222,1) 100%);
     --info-colour: #505050;
-    --catBoxBackground: none;
+
 }    
 
 body.neon-skin {
@@ -44,8 +46,8 @@ body.neon-skin {
     --menubutton-path: url(images/assets/neon/menubutton.jpg);
     --menubg-path: url(images/assets/neon/menubackground.jpg);
     --info-background: linear-gradient(0deg, rgba(42,42,42,1) 0%, rgba(63,63,63,1) 68%, rgba(43,43,43,1) 100%);
-    --back-image-path: url(/images/assets/neon/cardBack.jpg);
-    --card-front-image: url(/images/assets/neon/cardFront.jpg);
+    --back-image-path: url(images/assets/neon/cardBack.jpg);
+    --card-front-image: url(images/assets/neon/cardFront.jpg);
     --topline-padding: 0;
     --topline-background: transparent;
     --image-border: 1px solid #ee2a7b; 
@@ -64,6 +66,7 @@ body.neon-skin {
     --category-text-colour:#ee2a7b;
     --mix-blend-mode: normal;
 
+
 }  
 
 body.minimal-skin {
@@ -72,8 +75,8 @@ body.minimal-skin {
     --menubutton-path: url(images/assets/minimal/menubutton.jpg);
     --menubg-path: url(images/assets/minimal/menubackground.jpg);
     --info-background: #e0e0e0;
-    --back-image-path: url(/images/assets/minimal/cardBack.jpg);
-    --card-front-image: url(/images/assets/minimal/cardFront.jpg);
+    --back-image-path: url(images/assets/minimal/cardBack.jpg);
+    --card-front-image: url(images/assets/minimal/cardFront.jpg);
     --topline-padding: 0;
     --topline-background: transparent;
     --image-border: 1px solid #ffffff; 
@@ -91,6 +94,7 @@ body.minimal-skin {
     --card-name-colour:#424685;
     --category-text-colour:#424685;
     --mix-blend-mode: normal;
+
 }  
 
 
@@ -99,8 +103,8 @@ body.minimal-skin {
 
 body.default-theme{
     --topline-padding: 0;
-    --back-image-path: url(/images/80sCars/back.jpg);
-    --card-front-image: url(/images/80sCars/front.jpg);
+    --back-image-path: url(images/80sCars/back.jpg);
+    --card-front-image: url(images/80sCars/front.jpg);
     --topline-background: transparent;
     --image-border: 1px solid #202020; 
     --name-bg-colour: transparent;
@@ -114,12 +118,13 @@ body.default-theme{
     --topline-text-colour: #1e3d67;
     --card-name-colour:#1e3d67;
     --category-text-colour: #202020;
+
 }
 
 body.classic-theme{
     --topline-padding: 0.015;
-    --back-image-path: url(/images/Aeroplanes/back.jpg);
-    --card-front-image: url(/images/Aeroplanes/front.jpg);
+    --back-image-path: url(images/Aeroplanes/back.jpg);
+    --card-front-image: url(images/Aeroplanes/front.jpg);
     --topline-background: #ffdf00;
     --image-border: 4px solid #ffffff; 
     --name-bg-colour: #ffdf00;
@@ -133,13 +138,14 @@ body.classic-theme{
     --topline-text-colour: #1e3d67;
     --card-name-colour:#1e3d67;
     --category-text-colour: #202020;
+
 }
 
 
 body.nautical-theme{
     --topline-padding: 0;
-    --back-image-path: url(/images/Ships/back.jpg);
-    --card-front-image: url(/images/Ships/front.jpg);
+    --back-image-path: url(images/Ships/back.jpg);
+    --card-front-image: url(images/Ships/front.jpg);
     --topline-background: transparent;
     --image-border: 1px solid #2a5370; 
     --name-bg-colour: #9cd2ff;
@@ -153,6 +159,7 @@ body.nautical-theme{
     --topline-text-colour: #2a5370;
     --card-name-colour:#2a5370;
     --category-text-colour: #2a5370;
+
 }
 
 
@@ -516,7 +523,7 @@ input[type="radio"] {
     display: flex;
     flex-direction: row;
     z-index: 20;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25) ;
     background-image: var(--menubg-path);
     background-size: auto 100%; /* Maintain aspect ratio and set height to 100% */
     background-position: right center; /* Anchor to the far right */
@@ -537,7 +544,7 @@ input[type="radio"] {
     background: var(--info-background);
     border-radius: 50px;
     border: 1px solid #444444;
-    box-shadow: inset 10px 5px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 10px 5px 5px rgba(0, 0, 0, 0.15);
     white-space: nowrap;        /* Prevents text wrapping to the next line */
     overflow: hidden;          /* Hides any text that overflows the container */
     text-overflow:ellipsis;   /* Adds "..." at the end of overflowing text */
@@ -610,7 +617,6 @@ input[type="radio"] {
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    /* box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.25);*/
 }
 
 @keyframes flyIn {
@@ -682,7 +688,7 @@ input[type="radio"] {
     position: relative;
     transform-style: preserve-3d; /* Ensures 3D transform works */ 
     border-radius: calc(var(--card-height) * 0.05);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15)
 
 }
 
@@ -904,7 +910,7 @@ input[type="radio"] {
     max-width: 90%; /* Match the width of `.cardShape` */
     height: 90%; /* Match the height of `.cardShape` */
     border-radius: calc(var(--card-height) * 0.05); /* Match border radius */
-    box-shadow: calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) rgba(0, 0, 0, 0.35);
+    box-shadow: calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) calc(var(--cardsInHand) * 2px) rgba(0, 0, 0, 0.30);
 
 }
 
@@ -964,7 +970,8 @@ input[type="radio"] {
     height: 90%;
     aspect-ratio: 0.62;
     max-width: 90%;
-    border-radius: calc(var(--card-height) * 0.05);
+    /*border-radius: calc(var(--card-height) * 0.05);*/
+    border-radius: 20px;
     top: 50%;
     left: 50%;
     transform: translate(calc(-50% + var(--x-offset)), -160%); /* Initial position above */
