@@ -64,7 +64,6 @@ body.neon-skin {
     --topline-text-colour:#ee2a7b;
     --card-name-colour:#ee2a7b;
     --category-text-colour:#ee2a7b;
-    --mix-blend-mode: normal;
 
 
 }  
@@ -161,6 +160,29 @@ body.nautical-theme{
     --category-text-colour: #2a5370;
 
 }
+
+body.jamesbond-theme{
+    --topline-padding: 0;
+    --back-image-path: url(images/BondCars/back.jpg);
+    --card-front-image: url(images/BondCars/front.jpg);
+    --topline-background: transparent;
+    --image-border: 1px solid #d2d2d2; 
+    --name-bg-colour: #363636;
+    --catBoxBackground: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(20,20,20,0) 68%, rgba(20,20,20,1) 100%);
+    --catBoxHiliteColour: #d60000;
+    --catBoxColour: rgb(40,40,40)  ;
+    --button-border:none;
+    --flag-border: 1px solid #d2d2d2;
+    --flag-frame: none;
+    --image-border-style: solid;
+    --mix-blend-mode: normal;
+    --topline-text-colour: #d2d2d2;
+    --card-name-colour:#343434;
+    --category-text-colour: #d2d2d2;
+    
+
+}
+
 
 
 body {    

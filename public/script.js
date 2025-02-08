@@ -160,7 +160,7 @@ classNames.forEach(className => {
 
 //////////////////// initial state and variables ///////////////
 
-deckList = ['80sCars','Aeroplanes','Ships']
+deckList = ['80sCars','Aeroplanes','Ships','BondCars']
 thisDeckIndex = 0
 thisDeck = '80sCars'
 thisPlayer = ''
@@ -729,12 +729,13 @@ function switchGlobalTheme() {
     if (thisDeck == '80sCars') {thisTheme = 'default'}
     if (thisDeck == 'Aeroplanes') {thisTheme = 'classic'}
     if (thisDeck == 'Ships') {thisTheme = 'nautical'}   
+    if (thisDeck == 'BondCars') {thisTheme = 'jamesbond'}
     switchSkin(thisSkin)
 }
 
 function switchSkin(skin) {
     thisSkin = skin
-    body.classList.remove('oldskool-skin', 'minimal-skin','neon-skin','default-theme','classic-theme', 'nautical-theme');
+    body.classList.remove('oldskool-skin', 'minimal-skin','neon-skin','default-theme','classic-theme', 'nautical-theme', 'jamesbond-theme');
     if (skin == 'oldskool') { body.classList.add(`${thisTheme}-theme`)}
     body.classList.add(`${skin}-skin`);
 }
