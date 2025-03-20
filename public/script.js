@@ -225,11 +225,13 @@ function myCardToPlay() {
 
 
 window.addEventListener("beforeunload", (event) => {
-    event.preventDefault();
     event.returnValue = "Are you sure you want to leave? Changes may be lost.";
-  });
+});
   
-
+history.pushState(null, "", location.href);
+window.addEventListener("popstate", function () {
+    history.pushState(null, "", location.href);
+});
 
 
 
